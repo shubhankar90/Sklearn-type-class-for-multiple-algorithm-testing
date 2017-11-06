@@ -28,6 +28,8 @@ from sklearn.multiclass import OneVsRestClassifier
 import xgboost
 from xgboost.sklearn import XGBClassifier,XGBRegressor
 
+from algocomparison import AlgoComparison
+
 # prepare models
 models = []
 models.append(('LR', LogisticRegression))
@@ -87,7 +89,7 @@ y_train = iris.target
 roc_auc_scorer = metrics.make_scorer(metrics.roc_auc_score, greater_is_better=True,
                              needs_threshold=True) 
 #Initialize class
-multi_algo_comparison = algo_comparison(models, model_params=model_params, 
+multi_algo_comparison = AlgoComparison(models, model_params=model_params, 
                             model_param_search_grid=gs_params
                             , n_jobs = 3, scoring=roc_auc_scorer
                             ,use_cross_val=False)
